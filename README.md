@@ -14,24 +14,6 @@ Journey combines railway schedule data, delay information, machine learning, bac
 Instead of relying only on static scheduled timings, the system uses a **LightGBM regression model** trained on railway delay patterns to predict delay and calculate a **dynamic ETA**.
 
 ---
-## 🛠️ Tech Stack
-
-**Machine Learning**
-
-`Python` `Pandas` `Scikit-learn` `LightGBM`
-
-**Backend & Database**
-
-`Supabase` `PostgreSQL` `REST API`
-
-**Frontend**
-
-`Next.js` `JavaScript`
-
-**Deployment**
-
-`Vercel`
-
 
 ## 🏗️ Architecture
 
