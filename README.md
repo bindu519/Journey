@@ -1,65 +1,130 @@
 # 🚆 Journey — Dynamic Railway ETA Prediction
 
-> An ML-powered railway monitoring and ETA prediction platform designed to provide dynamic train arrival estimates using machine learning, railway schedule data, and station-level information.
+An ML-powered railway monitoring and ETA prediction platform that provides dynamic train arrival estimates using railway schedule data, station-level information, and machine learning.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](https://journey-ijym.vercel.app/)
-[![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![LightGBM](https://img.shields.io/badge/Model-LightGBM-green?style=for-the-badge)](https://lightgbm.readthedocs.io/)
-[![Supabase](https://img.shields.io/badge/Backend-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
+**🌐 Live Demo:** [journey-ijym.vercel.app](https://journey-ijym.vercel.app/)
+**📂 Repository:** [github.com/vasireddikeerthika/Journey](https://github.com/vasireddikeerthika/Journey)
+
+---
+
+## 📌 About
+
+Journey combines railway schedule data, delay information, machine learning, backend services, and an interactive dashboard to provide continuously updated train ETA information.
+
+Instead of relying only on static scheduled timings, the system uses a **LightGBM regression model** trained on railway delay patterns to predict delay and calculate a **dynamic ETA**.
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
+flowchart TD
+    A[Railway Schedule & Delay Data] --> B[Data Cleaning & Preprocessing]
+    B --> C[Feature Engineering]
+    C --> D[LightGBM Regression Model]
+    D --> E[Predicted Delay]
+    E --> F[Dynamic ETA Calculation]
+    F --> G[(Supabase / PostgreSQL)]
+    G --> H[REST API]
+    H --> I[Next.js Frontend]
+    I -->|Polling| H
+    I --> J[Vercel Deployment]
+    J --> K[Live Dashboard]
+```
 
 ---
 
 ## 👩‍💻 My Role
 
-### Machine Learning & ETA Prediction — Keerthika Sai Vasireddi
+**Machine Learning, Backend, Integration & Deployment — Keerthika Sai Vasireddi**
 
-I was primarily responsible for the **Machine Learning and ETA prediction component** of Journey, working on the prediction pipeline from data preparation through application integration.
+I handled the project **except for frontend development**, including:
 
-### My ML Contributions
-
-- 🧹 Cleaned and prepared railway schedule and delay data
-- ⚙️ Performed feature engineering
-- 📊 Prepared features for model training
-- 🤖 Developed and trained the **LightGBM regression model**
-- 📈 Evaluated model performance using **Mean Absolute Error (MAE)**
-- ⏱️ Built the ETA prediction pipeline
-- 🔄 Developed the dynamic delay correction layer
-- 🔌 Integrated the ML prediction workflow with the application
-- 🧪 Tested and validated model predictions
-
-### My Product Contributions
-
-Along with my ML work, I also proposed important user-facing features for Journey:
-
-- 🗺️ **Station-to-station train journey view** — showing a train's movement from one station to the next instead of presenting train information only as an overall record.
-- 🌐 **Telugu and Hindi language support** — making the railway interface more accessible to users who prefer regional languages.
-- 🔄 **Polling-based updates** — allowing the dashboard to periodically retrieve updated train information without requiring a complete manual page refresh.
+* 🧹 Data cleaning and preprocessing
+* ⚙️ Feature engineering
+* 🤖 LightGBM model development and training
+* 📈 Model evaluation using MAE
+* ⏱️ ETA prediction pipeline
+* 🔄 Dynamic delay correction
+* 🗄️ Supabase/PostgreSQL integration
+* 🔌 Application and data integration
+* 🔄 Polling-based updates
+* 🚀 Vercel deployment and live application integration
 
 ---
 
-# 📌 About Journey
+## 🤖 Machine Learning
 
-Journey is a railway-focused web application that combines **Machine Learning, railway data, backend services, and an interactive dashboard** to provide dynamic ETA information.
+**Model:** LightGBM Regression
+**Evaluation Metric:** Mean Absolute Error (MAE)
+**Model MAE:** **5.6 minutes**
 
-The system goes beyond displaying only scheduled arrival times by using a machine learning model to estimate train delay and calculate an updated ETA.
+### Features Used
 
-### Core Workflow
+| Feature                | Description                                   |
+| ---------------------- | --------------------------------------------- |
+| Station number         | Sequence position of the station on the route |
+| Scheduled running time | Planned travel time between stations          |
+| Previous station delay | Delay recorded at the previous station        |
+| Day of week            | Captures weekly delay patterns                |
+| Month                  | Captures seasonal variation                   |
+| Train type             | Train category                                |
+| Station zone           | Railway zone of the station                   |
+
+### Data Processing
+
+The pipeline cleans and combines railway schedule and delay data, performs feature engineering, and prepares station-level records for model training and prediction.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer          | Technologies                           |
+| -------------- | -------------------------------------- |
+| **ML**         | Python, Pandas, Scikit-learn, LightGBM |
+| **Backend**    | Supabase, PostgreSQL, REST API         |
+| **Frontend**   | Next.js                                |
+| **Deployment** | Vercel                                 |
+
+---
+
+## 🔄 Dynamic ETA
+
+Journey uses predicted delay together with scheduled journey information to calculate updated arrival estimates.
 
 ```text
-Railway Data
-     ↓
-Data Cleaning
-     ↓
-Feature Engineering
-     ↓
-LightGBM Regression Model
-     ↓
+Scheduled ETA
+      +
 Predicted Delay
-     ↓
-Dynamic ETA Calculation
-     ↓
-Supabase / Backend
-     ↓
-Polling
-     ↓
-Journey Dashboard
+      ↓
+Dynamic ETA
+      ↓
+Updated Train Information
+```
+
+The application uses **polling-based updates** to periodically retrieve updated information without requiring a complete manual page refresh.
+
+---
+
+## 🚀 Deployment
+
+The application is deployed using **Vercel** and integrated with the project's backend and data services.
+
+**🌐 Live Application:**
+https://journey-ijym.vercel.app/
+
+---
+
+## 🔮 Future Enhancements
+
+* 🗺️ Station-to-station journey visualization
+* 🌐 Telugu and Hindi language support
+* 📱 Real-time delay notifications
+* 📊 Historical delay trends
+* 🔄 Automated model retraining with new data
+
+---
+
+## 📄 License
+
+This project was developed for educational and project demonstration purposes.
